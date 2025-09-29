@@ -36,3 +36,14 @@ def similarity_search(query: str, k: int = 5, doc_ids: Optional[List[str]] = Non
     vs = get_vector_store()
     where = {"doc_id": {"$in": doc_ids}} if doc_ids else None
     return vs.similarity_search(query, k=k, filter=where)
+
+
+def similarity_search_with_scores(query: str, k: int = 5, doc_ids: Optional[List[str]] = None):
+    """Return a list of (Document, score) pairs for a query.
+
+    Score semantics are vector-store specific; for Chroma (via LangChain), this
+    is typically a distance metric where lower is better. We surface it directly.
+    """
+    vs = get_vector_store()
+    where = {"doc_id": {"$in": doc_ids}} if doc_ids else None
+    return vs.similarity_search_with_score(query, k=k, filter=where)

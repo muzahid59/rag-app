@@ -7,6 +7,7 @@ from .config import settings
 from .routers.upload import router as upload_router
 from .routers.query import router as query_router
 from .routers.bulk_upload import router as bulk_upload_router
+from .routers.search import router as search_router
 
 app = FastAPI(title="PDF RAG API", version="0.1.0")
 
@@ -40,4 +41,5 @@ async def health():
 
 app.include_router(upload_router, prefix="/upload", tags=["upload"])
 app.include_router(bulk_upload_router, prefix="/bulk-upload", tags=["bulk-upload"])
+app.include_router(search_router, prefix="/search", tags=["search"])
 app.include_router(query_router, prefix="/query", tags=["query"])

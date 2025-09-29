@@ -36,6 +36,11 @@ class QueryResponse(BaseModel):
     usage: Dict[str, int]
 
 
+class SearchResponse(BaseModel):
+    results: List[SourceChunk]
+    usage: Dict[str, int]
+
+
 class BulkUploadRequest(BaseModel):
     directory_path: str
 
